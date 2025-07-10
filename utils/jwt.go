@@ -9,7 +9,7 @@ import (
 
 // Claims JWT声明
 type Claims struct {
-	UserID   int    `json:"user_id"`
+	UserID   int64  `json:"user_id"`
 	NickName string `json:"nick_name"`
 	jwt.RegisteredClaims
 }
@@ -27,7 +27,7 @@ func NewJWTUtil(secret string) *JWTUtil {
 }
 
 // GenerateToken 生成JWT token
-func (j *JWTUtil) GenerateToken(userID int, nickName string, expireTime time.Duration) (string, error) {
+func (j *JWTUtil) GenerateToken(userID int64, nickName string, expireTime time.Duration) (string, error) {
 	claims := Claims{
 		UserID:   userID,
 		NickName: nickName,

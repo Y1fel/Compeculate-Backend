@@ -6,7 +6,7 @@ import (
 
 // UserScore 用户分数模型
 type UserScore struct {
-	ID             int       `json:"id" gorm:"primaryKey;autoIncrement"`
+	ID             int64     `json:"id" gorm:"primaryKey;autoIncrement;type:bigint"`
 	Username       string    `json:"username" gorm:"type:varchar(100);not null"`
 	AvatarURL      string    `json:"avatar_url" gorm:"type:varchar(255)"`
 	TotalQuestions int       `json:"total_questions" gorm:"default:0"`
@@ -41,7 +41,7 @@ func (u *UserScore) UpdateScore(totalQuestions, correctAnswers, score int) {
 // RankingUser 排行榜用户信息（匹配SQL查询结果）
 type RankingUser struct {
 	Rank           int     `json:"rank" gorm:"column:ranking"`
-	ID             int     `json:"id"`
+	ID             int64   `json:"id"`
 	NickName       string  `json:"nickName" gorm:"column:username"`
 	AvatarURL      string  `json:"avatarUrl" gorm:"column:avatar_url"`
 	TotalQuizzes   int     `json:"totalQuizzes" gorm:"column:total_questions"`
@@ -52,8 +52,8 @@ type RankingUser struct {
 
 // QuizResult 答题结果
 type QuizResult struct {
-	ID             int       `json:"id" gorm:"primaryKey;autoIncrement"`
-	UserID         int       `json:"user_id" gorm:"not null"`
+	ID             int64     `json:"id" gorm:"primaryKey;autoIncrement;type:bigint"`
+	UserID         int64     `json:"user_id" gorm:"not null;type:bigint"`
 	TotalQuestions int       `json:"total_questions" gorm:"not null"`
 	CorrectAnswers int       `json:"correct_answers" gorm:"not null"`
 	Score          int       `json:"score" gorm:"not null"`

@@ -28,7 +28,7 @@ WechatGo/
 │   └── config.go        # 应用配置和环境变量
 ├── handlers/            # API处理器
 │   ├── auth.go          # 认证相关处理器
-│   ├── user.go          # 用户相关处理器
+│   ├── user.go          # 用户相关处理器  
 │   ├── quiz.go          # 答题相关处理器
 │   └── ranking.go       # 排行榜相关处理器
 ├── middleware/          # 中间件

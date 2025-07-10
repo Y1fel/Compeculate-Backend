@@ -34,7 +34,7 @@ func (h *UserHandler) GetUserStats(c *gin.Context) {
 		return
 	}
 
-	userID := userIDInterface.(int)
+	userID := userIDInterface.(int64)
 
 	// 从数据库获取用户统计信息
 	user, err := h.dbService.GetUserStats(userID)
@@ -80,7 +80,7 @@ func (h *UserHandler) GetUserProfile(c *gin.Context) {
 		return
 	}
 
-	userID := userIDInterface.(int)
+	userID := userIDInterface.(int64)
 
 	// 从数据库获取用户详细信息
 	user, err := h.dbService.GetUserByID(userID)

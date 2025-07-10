@@ -1,15 +1,15 @@
 package services
 
 import (
+	"WechatGo/config"
+	"WechatGo/models"
 	"fmt"
 	"log"
 
-	"WechatGo/config"
-	"WechatGo/models"
-
 	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+
+	"gorm.io/gorm"
 )
 
 // DatabaseService 数据库服务
@@ -54,7 +54,7 @@ func (s *DatabaseService) CreateUser(user *models.UserScore) error {
 }
 
 // UpdateUserScore 更新用户分数
-func (s *DatabaseService) UpdateUserScore(userID int, totalQuestions, correctAnswers, score int) error {
+func (s *DatabaseService) UpdateUserScore(userID int64, totalQuestions, correctAnswers, score int) error {
 	return s.DB.Model(&models.UserScore{}).
 		Where("id = ?", userID).
 		Updates(map[string]interface{}{
@@ -65,7 +65,7 @@ func (s *DatabaseService) UpdateUserScore(userID int, totalQuestions, correctAns
 }
 
 // GetUserStats 获取用户统计信息
-func (s *DatabaseService) GetUserStats(userID int) (*models.UserScore, error) {
+func (s *DatabaseService) GetUserStats(userID int64) (*models.UserScore, error) {
 	var user models.UserScore
 	err := s.DB.Where("id = ?", userID).First(&user).Error
 	if err != nil {
@@ -114,7 +114,7 @@ func (s *DatabaseService) GetRankingList(page, limit int) ([]models.RankingUser,
 }
 
 // GetUserRank 获取用户排名
-func (s *DatabaseService) GetUserRank(userID int) (int, error) {
+func (s *DatabaseService) GetUserRank(userID int64) (int, error) {
 	// 使用原生SQL查询获取用户排名
 	query := `
 		SELECT ranking FROM (
@@ -141,7 +141,7 @@ func (s *DatabaseService) SaveQuizResult(result *models.QuizResult) error {
 }
 
 // GetUserByID 根据ID获取用户
-func (s *DatabaseService) GetUserByID(userID int) (*models.UserScore, error) {
+func (s *DatabaseService) GetUserByID(userID int64) (*models.UserScore, error) {
 	var user models.UserScore
 	err := s.DB.Where("id = ?", userID).First(&user).Error
 	if err != nil {

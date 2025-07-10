@@ -19,7 +19,7 @@ func main() {
 	// 设置Gin模式
 	gin.SetMode(cfg.Server.Mode)
 
-	// 创建数据库服务
+	//创建数据库服务
 	dbService, err := services.NewDatabaseService(cfg)
 	if err != nil {
 		log.Fatalf("Failed to initialize database: %v", err)

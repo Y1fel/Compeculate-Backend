@@ -50,7 +50,7 @@ func (h *QuizHandler) SubmitQuizResult(c *gin.Context) {
 		return
 	}
 
-	userID := userIDInterface.(int)
+	userID := userIDInterface.(int64)
 
 	var req QuizSubmitRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
